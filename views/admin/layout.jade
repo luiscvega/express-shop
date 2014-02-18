@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Luis Vega
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/main.css")
+  body
+    .container
+      h1 Admin
+      ul
+        li
+          a(href="/admin") Dashboard
+        li
+          a(href="/admin/products/new") Create Product
+        li
+          a(href="/admin/logout") Log Out
+
+      block content
+

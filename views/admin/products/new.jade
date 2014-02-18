@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1 Create Product
+
+  form(action="/admin/products", method="POST")
+    .form-group
+      label Name
+      input#product-name.form-control(type="text", name="product[name]")
+
+    .form-group
+      label Price
+      input#product-price.form-control(type="text", name="product[price]")
+
+    button.btn.btn-default(type="submit") Create
+
