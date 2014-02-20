@@ -2,18 +2,10 @@ doctype html
 html
   head
     title Luis Vega
-    link(rel="stylesheet", href="/css/bootstrap.min.css")
-    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="/css/vendors/bootstrap-3.1.1/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/admin/main.css")
   body
+    include navbar
+
     .container
-      h1 Admin
-      ul
-        li
-          a(href="/admin") Dashboard
-        li
-          a(href="/admin/products") Products
-        li
-          a(href="/admin/logout") Log Out
-
       block content
-
