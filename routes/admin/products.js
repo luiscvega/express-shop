@@ -21,7 +21,6 @@ module.exports = function (app) {
       });
     });
 
-    app.param("id", Number);
     app.get("/:id", function (req, res) {
       Product.find(req.params.id, function (err, product) {
         res.render("admin/products/show", { product: product });
