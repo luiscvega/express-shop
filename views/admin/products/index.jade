@@ -7,7 +7,13 @@ block content
     tr
       th Name
       th Price
+      th
     for product in products
       tr
-        td= product.name
+        td
+          a(href="/admin/products/#{ product.id }")= product.name
         td= product.price
+        td
+          form(action="/admin/products/#{ product.id }", method="POST")
+            input(type="hidden", name="_method", value="DELETE")
+            button.btn.btn-danger.btn-xs Delete
