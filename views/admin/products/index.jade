@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  a(href="/admin/products/new") New Product
+
+  table.table.table-striped
+    tr
+      th Name
+      th Price
+    for product in products
+      tr
+        td= product.name
+        td= product.price

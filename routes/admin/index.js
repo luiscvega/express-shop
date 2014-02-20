@@ -1,3 +1,5 @@
+var Product = require("../../models/product");
+
 var createProduct = require("../../flows/create-product.js");
 
 module.exports = function (app) {
@@ -6,19 +8,30 @@ module.exports = function (app) {
       res.render("admin/index", { message: "admin" });
     });
 
+    app.get("/products", function (req, res) {
+      Product.all(function (err, data) {
+        res.render("admin/products/index", { products: data });
+      });
+    });
+
     app.get("/products/new", function (req, res) {
       res.render("admin/products/new");
     });
 
     app.post("/products", function (req, res) {
-      var product = req.body.product;
-      var scribe = createProduct(product);
+      createProduct(req.param("product"), function (err, result) {
+        //if (err) {
+          //res.end(JSON.stringify(err));
+        //} else {
+          res.redirect("/admin/products");
+        //};
+      });
 
-      if (scribe.isValid) {
-        res.redirect("/admin");
-      } else {
-        res.redirect("/admin/products/new?boom=box");
-      }
+      //var product = Product(req.param("product"));
+
+      //product.save();
+
+      //res.redirect("/admin/products");
     });
   };
 };
