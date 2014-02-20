@@ -21,12 +21,9 @@ module.exports = function (app) {
       });
     });
 
-    app.get("/new", function (req, res) {
-      res.render("admin/products/new");
-    });
-
+    app.param("id", Number);
     app.get("/:id", function (req, res) {
-      Product.find(req.param("id"), function (err, product) {
+      Product.find(req.params.id, function (err, product) {
         res.render("admin/products/show", { product: product });
       });
     });
@@ -41,5 +38,8 @@ module.exports = function (app) {
       });
     });
 
+    app.get("/new", function (req, res) {
+      res.render("admin/products/new");
+    });
   };
 };
