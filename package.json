@@ -1,8 +1,5 @@
 {
   "scripts": {
     "start": "node app.js"
-  },
-  "dependencies": {
-    "outflow": "0.0.3"
   }
 }

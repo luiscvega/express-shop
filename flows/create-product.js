@@ -2,13 +2,14 @@ var outflow = require("outflow");
 var Product = require("../models/product");
 
 module.exports = outflow({
-  validations: function () {
+  validations: function (assert, attributes) {
+    assert(attributes.name.length > 0, ["name", "cannot be blank"]);
   },
 
-  success: function (attributes) {
+  success: function (attributes, callback) {
     var product = Product(attributes);
     product.save();
 
-    return product;
+    callback(null, product);
   }
 });
