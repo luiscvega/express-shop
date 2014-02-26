@@ -1,6 +1,7 @@
 var createProduct = require("../../flows/create-product");
 var deleteProduct = require("../../flows/delete-product");
 var getProducts = require("../../flows/get-products");
+var getProduct = require("../../flows/get-product");
 var Product = require("../../models/product");
 
 exports.list = function (req, res) {
@@ -20,7 +21,7 @@ exports.create = function (req, res) {
 };
 
 exports.show = function (req, res) {
-  Product.find(req.params.id, function (err, product) {
+  getProduct({ id: req.params.id }, function (err, product) {
     res.render("admin/products/show", { product: product });
   });
 };
