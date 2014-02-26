@@ -8,8 +8,11 @@ block content
       th Name
       th Price
       th
+      th
+
     for product in products
       tr
+        td= product.id
         td
           a(href="/admin/products/#{ product.id }")= product.name
         td= product.price

@@ -5,7 +5,7 @@ var Product = require("../../models/product");
 
 exports.list = function (req, res) {
   getProducts({}, function (err, result) {
-    res.render("admin/products/index", { products: result });
+    res.render("admin/products/list", { products: result });
   });
 };
 
