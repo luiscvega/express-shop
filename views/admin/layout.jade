@@ -8,4 +8,9 @@ html
     include navbar
 
     .container
+      if errors
+        .alert.alert-warning
+          - for error in errors
+            p= error
+
       block content

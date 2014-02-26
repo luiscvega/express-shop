@@ -3,7 +3,7 @@ var Product = require("../models/product");
 
 module.exports = outflow({
   validations: function (assert, attributes) {
-    assert(attributes.name.length > 0, ["name", "cannot be blank"]);
+    assert(attributes.name.length > 0, "Name cannot be blank.");
   },
 
   success: function (attributes, callback) {

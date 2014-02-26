@@ -11,25 +11,34 @@ exports.list = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  createProduct(req.param("product"), function (err, result) {
-    if (err) {
-      res.end(JSON.stringify(err));
+  createProduct(req.param("product"), function (errors, result) {
+    if (errors) {
+      res.render("admin/products/new", { errors: errors });
     } else {
       res.redirect("/admin/products");
     };
   });
 };
 
-exports.show = function (req, res) {
-  getProduct({ id: req.params.id }, function (err, product) {
-    res.render("admin/products/show", { product: product });
+exports.load = function (req, res, next) {
+  getProduct({ id: req.params.id }, function (errors, product) {
+    if (errors) {
+      res.ender("admin/products/list", { errors: errors });
+    } else {
+      req.product = product;
+      next();
+    };
   });
 };
 
+exports.show = function (req, res) {
+  res.render("admin/products/show", { product: req.product });
+};
+
 exports.delete = function (req, res) {
-  deleteProduct({ id: req.param("id") }, function (err, result) {
-    if (err) {
-      res.end(JSON.stringify(err));
+  deleteProduct({ product: req.product }, function (errors, result) {
+    if (errors) {
+      res.end(JSON.stringify(errors));
     } else {
       res.redirect("/admin/products");
     };
